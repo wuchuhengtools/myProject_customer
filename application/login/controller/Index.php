@@ -10,9 +10,13 @@ class Index extends Controller
      */
     public function index()
     {
-        
-        return $this->fetch('login'); 
+        if(Session::get('islogin')){
+            return redirect('index/index/index');// 登录定向到主模块
+        }else{
+            return $this->fetch('login'); 
+        }
     }
+   
 
     
 }
