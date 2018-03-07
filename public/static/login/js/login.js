@@ -10,11 +10,11 @@
  */
 /**
  *@登录操作
- *@parm json
+ *@type json
  */
 $('.login').click(function(){
     var username = $('input[name=username]').val();
-    var password = $('input[name=passwrd]').val();
+    var password = $('input[name=password]').val();
     var autologin= $("input[type='checkbox']").is(':checked');
     $.ajax({
         type: "POST",
