@@ -3,7 +3,7 @@ namespace app\login\controller;
 use think\Controller;
 use think\facade\Session;
 use think\facade\Request;
-use app\common\controller\Encrypt;
+use app\common\model\Encrypt;
 class Index extends Controller
 {
     
@@ -19,7 +19,7 @@ class Index extends Controller
         if(Session::get('islogin')){
             return redirect('index/index/index');// 登录定向到主模块
         }else{
-            return $this->fetch('login'); 
+            return $this->fetch('index/login'); 
         }
     }
     /*
