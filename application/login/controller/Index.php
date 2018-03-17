@@ -14,9 +14,25 @@ class Index extends Controller
      */
     public function index()
     {
-        if(Session::get('islogin')){
+        if(Session::get('admin_id')){
             return redirect('index/index/index');// 登录定向到主模块
         }else{
+            $Encrypt = new Encrypt;
+            $username = "";
+            $password = "";
+            $autologin = "";
+            if(Cookie::get('userinfo')){
+                $unlock_url = $Encrypt->unlock_url(Cookie::get('userinfo'));
+                $userinfo   = json_decode($unlock_url,true);
+                $username   = $userinfo["username"];
+                $password   = $userinfo["password"];
+                $autologin  = "checked='checked'";
+            }
+            $this->assign([
+                "username"  => $username,
+                "password"  => $password,
+                "autologin" => $autologin
+            ]);
             return $this->fetch('index/login'); 
         }
     }
@@ -40,13 +56,13 @@ class Index extends Controller
             if(!$hasUser){
                 return json([
                     'error_code'    => 401,
-                    'error_msg'     => '没有这个帐号'
+                    'error_msg'     => '帐号或密码不正确'
                 ]);
             }
             if(md5($password) != $hasUser['password']){
                 return json([
-                    'error'         => 0,
-                    'error_msg'     => '密码不正确！'
+                    'error'         => 401,
+                    'error_msg'     => '帐号或密码不正确'
                 ]);
             } 
             if(1 != $hasUser['status']) {
@@ -75,15 +91,17 @@ class Index extends Controller
                 // 提交事务
                 Db::commit();    
                 Session::set('admin_id',$hasUser['id']);
-                //socket 保存密码
+                //socket保存密码和删除密码
                 if($autologin == 'true'){
+                    $set = Db::name('set')->find(); 
                     $socket_json = json_encode([
                         'username' => Request::param('username'),
                         'password' => Request::param('password'),
                     ]); 
                     $lockText = $Encrypt->lock_url($socket_json);
-                    Cookie::set('username',$lockText,604800);
-                    dump(Cookie::get('username'));
+                    Cookie::set('userinfo',$lockText,$set['remember']);
+                }else{
+                    !Cookie::get('userinfo')? :Cookie::delete('userinfo');
                 }
                 return json(['error_code'=>200,'error_msg'=>'登录成功！']);
             } catch (\Exception $e) {
@@ -93,12 +111,4 @@ class Index extends Controller
             }
         } 
     }
-
-    /**
-     * 测试
-     */
-    public function test(){
-        echo 1;
-    }
-
 }

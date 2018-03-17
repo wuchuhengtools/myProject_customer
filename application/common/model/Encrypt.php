@@ -42,8 +42,4 @@ class Encrypt extends Model
         }
         return base64_decode($tmp);
     }
-    public function test(){
-        echo 31232;
-
-    }
 }

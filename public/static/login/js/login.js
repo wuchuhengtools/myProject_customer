@@ -23,6 +23,15 @@ $('.login').click(function(){
         dataType: "json",
         success: function(data){
             console.log(data);
+            if(typeof(data) != 'object') {
+                data = JSON.parse(data);
+            }
+            if(data["error_code"] != 200) {
+                $('.z-tip').removeClass('f-dn');
+                $('.z-tip').text(data["error_msg"]);
+            }else{
+                window.location.href=domain_url;
+            }
         }
     });
 });
