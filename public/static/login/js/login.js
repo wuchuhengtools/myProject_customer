@@ -9,10 +9,10 @@
  * -------------------------------------------------------
  */
 /**
- *@登录操作
+ *@登录函数
  *@type json
  */
-$('.login').click(function(){
+function login(){
     var username = $('input[name=username]').val();
     var password = $('input[name=password]').val();
     var autologin= $("input[type='checkbox']").is(':checked');
@@ -34,5 +34,24 @@ $('.login').click(function(){
             }
         }
     });
+};
+/*
+ *点击登录
+ */
+$('.login').click(function(){
+    login();
 });
 
+/**
+ *回车登录
+ */
+$(document).keyup(function (e) {//捕获文档对象的按键弹起事件  
+    if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了  
+        //此处编写用户敲回车后的代码  
+        var username = $('input[name=username]').val();
+        var password = $('input[name=password]').val();
+        if(username.length > 0 && password.length > 0){
+            login();
+        }
+    }  
+});  
