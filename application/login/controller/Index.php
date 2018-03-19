@@ -9,32 +9,39 @@ use think\facade\Cookie;
 class Index extends Controller
 {
     /**
+     *初始化
+     *
+     */
+    public function initialize()
+    {
+        if(Session::get('admin_id')){
+            $this->redirect('explore/Index/index');// 登录定向到探索模块
+        }
+    }
+
+    /**
      *登录页面
      *
      */
     public function index()
     {
-        if(Session::get('admin_id')){
-            return redirect('index/index/index');// 登录定向到主模块
-        }else{
-            $Encrypt = new Encrypt;
-            $username = "";
-            $password = "";
-            $autologin = "";
-            if(Cookie::get('userinfo')){
-                $unlock_url = $Encrypt->unlock_url(Cookie::get('userinfo'));
-                $userinfo   = json_decode($unlock_url,true);
-                $username   = $userinfo["username"];
-                $password   = $userinfo["password"];
-                $autologin  = "checked='checked'";
-            }
-            $this->assign([
-                "username"  => $username,
-                "password"  => $password,
-                "autologin" => $autologin
-            ]);
-            return $this->fetch('index/login'); 
+        $Encrypt = new Encrypt;
+        $username = "";
+        $password = "";
+        $autologin = "";
+        if(Cookie::get('userinfo')){
+            $unlock_url = $Encrypt->unlock_url(Cookie::get('userinfo'));
+            $userinfo   = json_decode($unlock_url,true);
+            $username   = $userinfo["username"];
+            $password   = $userinfo["password"];
+            $autologin  = "checked='checked'";
         }
+        $this->assign([
+            "username"  => $username,
+            "password"  => $password,
+            "autologin" => $autologin
+        ]);
+        return $this->fetch('index/login'); 
     }
     /*
      *登录操作
