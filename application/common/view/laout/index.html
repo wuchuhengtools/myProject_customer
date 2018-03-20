@@ -1,1378 +1,328 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9" >
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width">
-<title>¹ÜÀíÏµÍ³ - Ì½Ë÷ÍøÒ×ÆßÓã</title>
-<meta name="description" content="¹ÜÀíÏµÍ³ Ì½Ë÷ÍøÒ×ÆßÓãÒ³Ãæ"/>
-<meta name="keywords" content="¹ÜÀíÏµÍ³ Ì½Ë÷ÍøÒ×ÆßÓãÒ³Ãæ"/>
-<link rel="stylesheet" href="https://qiyukf.nosdn.127.net/prd/bs/pt_boss_guide_a74cd4e6996dfc689bedaee4b7f39d94.css"/>
-<style type="text/css">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=9" >
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width">
+        <title>ç®¡ç†ç³»ç»Ÿ - æ¢ç´¢ç½‘æ˜“ä¸ƒé±¼</title>
+        <!-- <meta name="description" content="ç®¡ç†ç³»ç»Ÿ æ¢ç´¢ç½‘æ˜“ä¸ƒé±¼é¡µé¢"/> -->
+        <!-- <meta name="keywords" content="ç®¡ç†ç³»ç»Ÿ æ¢ç´¢ç½‘æ˜“ä¸ƒé±¼é¡µé¢"/> -->
+        <link rel="stylesheet" href="__COMMON_CSS__/common.css"/>
+        <style type="text/css">
 ::-webkit-scrollbar {
-width: 7px;
-height:7px;
+    width: 7px;
+    height:7px;
 }
 ::-webkit-scrollbar-button {
-display: none;
+    display: none;
 }
 ::-webkit-scrollbar-thumb {
-border-radius: 3px;
-background: #dddfe0;
+    border-radius: 3px;
+    background: #dddfe0;
 }
 ::-webkit-scrollbar-track {
-width: 7px;
-height: 7px;
+    width: 7px;
+    height: 7px;
 }
 ::-webkit-scrollbar-track-piece {
-background: transparent;
+    background: transparent;
 }
-</style>
-<script src="https://qiyukf.nosdn.127.net/prd/res/pcclient/js/cef_native_api_v3.14.js?f718de445a791f2ef1ac9d811bb96bd0"></script>
-<script src="https://qiyukf.nosdn.127.net/prd/res/lib/debug.js?b6c5f5a8cac89c4abc648c23ecda7b40"></script>
-<script src="https://qiyukf.nosdn.127.net/prd/res/lib/socket.io.js?0e5c68a0575174a95d1f1e74d67b11dd"></script>
-<script src="https://qiyukf.nosdn.127.net/prd/res/lib/Rx.min.js?e056ec0b009280ad788b9f50d4e6473d"></script>
-<script>
-//×èÖ¹Ä¬ÈÏµÄÍÏ×§ĞĞÎª
-window.addEventListener("dragover",function(e){
-e = e || event;
-e.preventDefault();
-},false);
+        </style>
+        <script>
+            //é˜»æ­¢é»˜è®¤çš„æ‹–æ‹½è¡Œä¸º
+            window.addEventListener("dragover",function(e){
+                e = e || event;
+                e.preventDefault();
+            },false);
 window.addEventListener("drop",function(e){
-e = e || event;
-e.preventDefault();
+    e = e || event;
+    e.preventDefault();
 },false);
-</script>
-</head>
-<body class="g-flex">
-<nav class="g-nav" id="j-nav-narrow">
-<script>
-(function(){
-//ÓÃ»§Ãûtoggle
-window.userState = {
-toggle:function(event) {
-var node = document.getElementById('user-info'),
-classNames = node.className;
-if(classNames.indexOf('j-toggle') !== -1) node.className = "f-ib info";//¹Ø±ÕÓÃ»§ĞÅÏ¢Ãæ°å
-else {
-node.className = "f-ib info j-toggle";//´ò¿ªÓÃ»§ĞÅÏ¢£¬¹Ø±Õºô½ĞºÍ¿Í·şÔÚÏßÃæ°å
-//¹Ø±Õºô½ĞÃæ°å
-var callNode = document.getElementById('call-panel');
-if(callNode) callNode.className = callNode.className.replace('open','close');
-//¹Ø±Õ¿Í·şÔÚÏßÃæ°å
-var statusNode = document.getElementById('kefu-status');
-if(statusNode) statusNode.className = statusNode.className.replace('j-toggle','');
-//ÁªÏµ¿Í·şÃæ°åÊÕÆğ
-var contactKefuNode = document.getElementById('contact_kefu');
-if (contactKefuNode) contactKefuNode.className = contactKefuNode.className.replace('j-toggle','');
-//ÏÂÔØÖĞĞÄÃæ°åÊÕÆğ
-window.__downloadCenter && window.__downloadCenter.hideDownLoadTipView();
-}
-if(!event.target.href) event.stopPropagation();//µ±ÓĞÁ´½ÓÊ±£¬²»×èÖ¹ÊÂ¼şÃ°Åİ
-},
-contactKefuToggle: function(event) {
-var contactKefuNode = document.getElementById('contact_kefu'),
-contactKefuClassName = contactKefuNode.className;
-if (contactKefuClassName.indexOf('j-toggle') !== -1) {
-//ÁªÏµ¿Í·şÃæ°åÊÕÆğ
-contactKefuNode.className = "f-ib contact_kefu";
-} else {
-//ÁªÏµ¿Í·şÃæ°å´ò¿ª
-contactKefuNode.className = "f-ib contact_kefu j-toggle";
-//¹Ø±Õºô½ĞÃæ°å
-var callNode = document.getElementById('call-panel');
-if(callNode) callNode.className = callNode.className.replace('open','close');
-//¹Ø±Õ¿Í·şÔÚÏßÃæ°å
-var statusNode = document.getElementById('kefu-status');
-if(statusNode) statusNode.className = statusNode.className.replace('j-toggle','');
-//¹Ø±ÕÓÃ»§ĞÅÏ¢Ãæ°å
-var userInfoNode = document.getElementById('user-info');
-if (userInfoNode) userInfoNode.className = userInfoNode.className.replace('j-toggle','');
-//ÏÂÔØÖĞĞÄÃæ°åÊÕÆğ
-window.__downloadCenter && window.__downloadCenter.hideDownLoadTipView();
-}
-if(!event.target.href) event.stopPropagation();//µ±ÓĞÁ´½ÓÊ±£¬²»×èÖ¹ÊÂ¼şÃ°Åİ
-},
-downloadCenterToggle: function(event) {
-//¹Ø±ÕÁªÏµ¿Í·şÃæ°å
-var contactKefuNode = document.getElementById('contact_kefu');
-if (contactKefuNode) contactKefuNode.className = contactKefuNode.className.replace('j-toggle','');
-//¹Ø±ÕÓÃ»§ĞÅÏ¢Ãæ°å
-var userInfoNode = document.getElementById('user-info');
-if (userInfoNode) userInfoNode.className = userInfoNode.className.replace('j-toggle','');
-var downloadCenterNode = document.getElementById('m-header-download'),
-classNames = downloadCenterNode.className;
-if(classNames && classNames.indexOf('j-toggle') !== -1) {
-//¹Ø±ÕÏÂÔØÖĞĞÄÃæ°å
-window.__downloadCenter && window.__downloadCenter.hideDownLoadTipView();
-} else {
-//´ò¿¨ÏÂÔØÖĞĞÄÃæ°å
-window.__downloadCenter && window.__downloadCenter.showDownLoadTipView();
-}
-if(!event.target.href) event.stopPropagation();//µ±ÓĞÁ´½ÓÊ±£¬²»×èÖ¹ÊÂ¼şÃ°Åİ
-},
-init:function() {
-var that = this;
-setTimeout(function(){
-var node = document.getElementById('user-info');
-node.addEventListener('click', that.toggle);
-var contactKefuNode = document.getElementById('contact_kefu');
-contactKefuNode.addEventListener('click', that.contactKefuToggle);
-var downloadCenterNode = document.getElementById('m-header-download');
-downloadCenterNode.addEventListener('click', that.downloadCenterToggle);
-//µã»÷ÆäËû¿Õ°×ÇøÓòÒş²Ø
-document.addEventListener('click',function() {
-node.className = "f-ib info";
-//ÁªÏµ¿Í·şÃæ°åÊÕÆğ
-contactKefuNode.className = "f-ib contact_kefu";
-});
-}, 500);
-}
-};
-window.userState.init();
-// µ¼º½×´Ì¬
-window.navState = {
-navIndex : -1,
-toggle : function(event){
-var node = document.getElementById('j-nav-narrow'),
-body = document.body,
-classNames = node.className,
-storage = window.localStorage;
-if(classNames.indexOf('g-nav-narrow') > -1){
-node.className = 'g-nav';
-body.className = 'g-flex';
-storage.setItem('nav-state', 0);
-}else{
-node.className = 'g-nav g-nav-narrow';
-body.className = 'g-flex g-flex-narrow';
-storage.setItem('nav-state', 1);
-}
-setTimeout(function(){
-window.dispatchEvent(new Event('resize'));
-},200)
-},
-// ³õÊ¼»¯Ô¤Ìî
-init: function(){
-var node = document.getElementById('j-nav-narrow'),
-body = document.body,
-that = this,
-storage = window.localStorage;
-if(storage.getItem('nav-state') === null){
-storage.setItem('nav-state',0);
-}
-if(storage.getItem('nav-state') != 0){
-node.className = 'g-nav g-nav-narrow';
-body.className = 'g-flex g-flex-narrow';
-}else{
-body.className = 'g-flex';
-node.className = 'g-nav';
-}
-// µ±Ç°Ò»¼¶²Ëµ¥Ïî,¼ÇÈëlocalstrage
-if(navState.navIndex != storage.getItem('navIndex')){
-for(var i=storage.length-1;i>=0;i--){
-var name = storage.key(i);
-if(/^z-open-\d+$/.test(name)){
-storage.removeItem(name);
-}
-}
-storage.setItem('navIndex',navState.navIndex);
-}
-setTimeout(function(){
-var node = document.getElementById('j-nav-narrow-set');
-node.addEventListener('click', that.toggle);
-}, 500);
-}
-};
-window.navState.init();
-})()
-</script>
-<div class="m-logo">
-<i class="logo"></i>
-</div>
-<ul class="m-nav" id="boss-navigator">
-<li class=" home" id="nav-home" data-action="redirect" data-href="/admin/" data-log="ad-nv-hm" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">Ö÷Ò³</a>
-</div>
-<a href="/admin/"><i class="u-icon u-icon-home"></i>Ö÷Ò³</a>
-</li>
-<li class=" report" id="nav-report" data-action="redirect" data-href="/admin/report/" data-log="ad-nv-rp" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">¹¤×÷±¨±í</a>
-</div>
-<a href="/admin/report/"><i class="u-icon u-icon-report"></i>¹¤×÷±¨±í</a>
-</li>
-<li class=" session" id="nav-session" data-action="redirect" data-href="/admin/session/" data-log="ad-nv-hs" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">ÀúÊ·»á»°</a>
-</div>
-<a href="/admin/session/"><i class="u-icon u-icon-session"></i>ÀúÊ·»á»°</a>
-</li>
-<li class=" quality" id="nav-quality" data-action="redirect" data-href="/quality/session/check/" data-log="ad-nv-qa" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">ÖÊÁ¿¼ì²â</a>
-</div>
-<a href="/quality/session/check/"><i class="u-icon u-icon-quality"></i>ÖÊÁ¿¼ì²â</a>
-</li>
-<li class=" sheet" id="nav-sheet" data-action="redirect" data-href="/worksheet/admin/" data-log="ad-nv-wk" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">¹¤µ¥ÖĞĞÄ</a>
-</div>
-<a href="/worksheet/admin/"><i class="u-icon u-icon-sheet"></i>¹¤µ¥ÖĞĞÄ</a>
-</li>
-<li class=" kefu" id="nav-kefu" data-action="redirect" data-href="/admin/kefu/" data-log="ad-nv-kf" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">¿Í·ş¹ÜÀí</a>
-</div>
-<a href="/admin/kefu/"><i class="u-icon u-icon-kefu"></i>¿Í·ş¹ÜÀí</a>
-</li>
-<li class=" book" id="nav-book" data-action="redirect" data-href="/robot/admin/" data-log="ad-nv-rt" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">ÖªÊ¶¿â</a>
-</div>
-<a href="/robot/admin/"><i class="u-icon-font icon-book"></i>ÖªÊ¶¿â</a>
-</li>
-<li class=" voice-big" id="nav-voice-big" data-action="redirect" data-href="/admin/outbox/" data-log="ad-nv-qa" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">¹«¸æ</a>
-</div>
-<a href="/admin/outbox/"><i class="u-icon-font icon-voice-big"></i>¹«¸æ</a>
-</li>
-<li class=" qiye" id="nav-qiye" data-action="redirect" data-href="/admin/company/" data-log="ad-nv-cp" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">ÆóÒµÕÊ»§¹ÜÀí</a>
-</div>
-<a href="/admin/company/"><i class="u-icon u-icon-qiye"></i>ÆóÒµÕÊ»§¹ÜÀí</a>
-</li>
-<li class=" setting" id="nav-setting" data-action="redirect" data-href="/admin/setting/" data-log="ad-nv-st" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">ÉèÖÃ</a>
-</div>
-<a href="/admin/setting/"><i class="u-icon u-icon-setting"></i>ÉèÖÃ</a>
-</li>
-<li class=" callcenter" id="nav-callcenter" data-action="redirect" data-href="/callcenter/" data-log="ad-nv-hs" data-sensorsheatmap="trackHeatMap">
-<div class="u-toast-nav">
-<a class="bd">ºô½ĞÖĞĞÄ</a>
-</div>
-<a href="/callcenter/"><i class="u-icon u-icon-callcenter"></i>ºô½ĞÖĞĞÄ</a>
-</li>
-</ul>
-</nav>
-<div class="g-container">
-<header class="g-header" id="boss-header">
-<div class="u-narrow" id="j-nav-narrow-set">
-<i class="u-icon u-icon-narrow"></i>
-</div>
-<i class="icon-slider" style="display: none"></i>
-<div class="m-slider-announce">
-<ul class="m-slider-ul">
-</ul>
-</div>
-<ul class="m-state">
-<li class="f-ib guide" id="qiyuGuide" data-log="ad-sr-qy0" data-sensorsheatmap="trackHeatMap">
-<a href="/admin/guide/"><i class="u-icon-guide"></i>Ì½Ë÷ÍøÒ×ÆßÓã</a>
-</li>
-<li class="f-ib contact_kefu" id="contact_kefu" data-sensorsheatmap="trackHeatMap">
-<i class="u-icon-font icon-contact-us"></i>
-<span>ÁªÏµ¿Í·ş</span>
-<i class="u-icon u-icon-down"></i>
-<ul class="m-smenu">
-<li id="concatUsBoss" data-sensorsheatmap="trackHeatMap">
-<a>
-<i class="u-icon-font icon-contact-us"></i>
-ÁªÏµÆßÓã¿Í·ş
-</a>
-</li>
-<li id="qiyuHelpCenter" data-sensorsheatmap="trackHeatMap">
-<a class="state__help" href="http://help.qiyukf.com/" target="_blank" id="state__help">
-<i class="u-icon-font icon-circle-question-revert"></i>
-ÆßÓã°ïÖúÖĞĞÄ
-</a>
-</li>
-</ul>
-</li>
-<li class="f-ib m-header-download" id="m-header-download" data-sensorsheatmap="trackHeatMap"><a><i class='u-icon-font icon-download-center'></i>ÏÂÔØÖĞĞÄ</a></li>
-<li class="f-ib m-header-mailtips" id="m_header_mailtips" data-sensorsheatmap="trackHeatMap"><a><i class='u-icon-font icon-voice-big'></i>ÏûÏ¢ÖĞĞÄ</a></li>
-<li class="f-ib info" id="user-info" data-sensorsheatmap="trackHeatMap">
-<span id="header-username-show">³¬¼¶¹ÜÀíÔ±</span>
-<i class="u-icon u-icon-down"></i>
-<ul class="m-smenu">
-<li id="change2Kefu" data-sensorsheatmap="trackHeatMap">
-<a href="/chat/" id="j-switch_btn">
-ÇĞ»»Îª¿Í·şÄ£Ê½
-</a>
-</li>
-<li id="change2InfoSetting" data-sensorsheatmap="trackHeatMap">
-<a href="/admin/setting/" data-action="redirect" data-href="/admin/setting/">
-¸öÈËĞÅÏ¢ÉèÖÃ
-</a>
-</li>
-<li id="change2Manage" data-sensorsheatmap="trackHeatMap">
-<a href="/admin/company/">
-ÆóÒµÕÊ»§¹ÜÀí
-</a>
-</li>
-<li id="change2Logout" data-sensorsheatmap="trackHeatMap">
-<a href="/api/kefu/logout" data-action="leave" id="j-logout">
-ÍË³ö
-</a>
-</li>
-</ul>
-</li>
-</ul>
-</header>
-<main class="g-main g-main-boss" id="boss-module">
-<div class="g-mnc g-mnc-guide">
-<div class="m-guidetlt">
-<h3>Ì½Ë÷ÍøÒ×ÆßÓã</h3>
-<p class="title">ÔÚÕâÀï£¬ÍøÒ×ÆßÓã½«°ïÖúÄãÍêÉÆ¿Í·ş¹ÜÀí£¬´òÔìÈ«ĞÂ·şÎñÌåÏµ</p>
-</div>
-<div class="m-guide">
-<div class="wrap-type">
-<div class="target">
-<div class="description">
-<h4>°ïÖúÓëÖ§³Ö</h4>
-<p>½â¾öÔÚ½ÓÈëºÍÊ¹ÓÃÖĞÓöµ½µÄÎÊÌâ</p>
-</div>
-<div class="list">
-<ul>
-<li data-log="ad-sr-qy1" data-log-label="0">
-<a href='https://ysf.nosdn.127.net/ÆßÓã²úÆ·ÊÖ²á3.12.pdf?download=ÆßÓã²úÆ·ÊÖ²á3.12.pdf' target="_blank" class="sysm">
-<i></i>
-<p>Ê¹ÓÃËµÃ÷</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="1" class="">
-<a href="https://qiyukf.com/guide" target="_blank" class="kfzn">
-<i></i>
-<p>¿ª·¢Ö¸ÄÏ</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="2" class="">
-<a href="https://qiyukf.com/newdoc/html/mobiledemo.html" target="_blank" class="ydd">
-<i></i>
-<p>ÒÆ¶¯¶ËDemo</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="3">
-<a href="#" onclick="ysf.open();return false;" class="lxwm">
-<i></i>
-<p>ÁªÏµÎÒÃÇ</p>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="wrap-type ">
-<div class="target">
-<div class="description">
-<h4>ÇşµÀ½ÓÈë</h4>
-<p>ÉèÖÃÇşµÀ½ÓÈë£¬Í¨¹ıÍøÒ×ÆßÓã¿ªÊ¼Óë ÄãµÄ¿Í»§½»Á÷</p>
-</div>
-<div class="list">
-<ul>
-<li data-log="ad-sr-qy1" data-log-label="4" class="">
-<a href="/admin/setting/pc" class="wzjr">
-<i></i>
-<p>ÍøÕ¾½ÓÈë</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="5" class="">
-<a href="/admin/setting/app" class="appjr">
-<i></i>
-<p>App½ÓÈë</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="6">
-<a href="/admin/setting/wx" class="wxjr">
-<i></i>
-<p>Î¢ĞÅ½ÓÈë</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="7" class="">
-<a href="https://qiyukf.com/newdoc/html/qiyu_crm_interface.html" target="_blank" class="qyxxjr">
-<i></i>
-<p>ÆóÒµĞÅÏ¢½ÓÈë</p>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="wrap-type">
-<div class="target">
-<div class="description">
-<h4>¿Í·ş¹ÜÀí</h4>
-<p>Ìí¼Ó¿Í·ş²¢ÎªÆä·Ö×é£¬Íê³É¿Í·ş ÍÅ¶ÓµÄ×é½¨</p>
-</div>
-<div class="list">
-<ul>
-<li data-log="ad-sr-qy1" data-log-label="8">
-<a href="/admin/kefu/" class="kflb">
-<i></i>
-<p>¿Í·şÁĞ±í</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="9">
-<a href="/admin/kefu/edit" class="xzkf">
-<i></i>
-<p>ĞÂÔö¿Í·ş</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="10">
-<a href="/admin/kefu/group" class="kffz">
-<i></i>
-<p>¿Í·ş·Ö×é</p>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="wrap-type">
-<div class="target">
-<div class="description">
-<h4>ÖÊ¼ìÓë¿¼ºË</h4>
-<p>Í¨¹ıÇ¿´óµÄÊı¾İÍ³¼Æ·ÖÎö£¬¸ÄÉÆ ¿Í·şÒµ¼¨</p>
-</div>
-<div class="list">
-<ul>
-<li data-log="ad-sr-qy1" data-log-label="11">
-<a href="/admin/session/" class="lshh">
-<i></i>
-<p>ÀúÊ·»á»°</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="12">
-<a href="/admin/report/" class="sjzl">
-<i></i>
-<p>Êı¾İ×ÜÀÀ</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="13">
-<a href="/admin/report/kefuList/workNums" class="kfbb">
-<i></i>
-<p>¿Í·ş±¨±í</p>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="wrap-type">
-<div class="target">
-<div class="description">
-<h4>Ğ§ÂÊÌáÉı</h4>
-<p>ÓÅ»¯·şÎñÁ÷³Ì£¬ÌáÉı¹¤×÷Ğ§ÂÊ</p>
-</div>
-<div class="list">
-<ul>
-<li data-log="ad-sr-qy1" data-log-label="14">
-<a href="/worksheet/admin/" class="gdzx">
-<i></i>
-<p>¹¤µ¥ÖĞĞÄ</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="15" class="">
-<a href="/admin/setting/session" class="hhyq">
-<i></i>
-<p>»á»°ÑûÇë</p>
-</a>
-</li>
-<li data-log="ad-sr-qy1" data-log-label="16">
-<a href="/admin/setting/robotSetting" class="znjqr">
-<i></i>
-<p>ÖÇÄÜ»úÆ÷ÈË</p>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-<script>
-window.appConfig = {appkey:"3858be3c20ceb6298575736cf27858a7",protocol:{sdk:"https",boss:"https",kefu:"https",super:"https"},domain:{sdk:"qiyukf.com",boss:"qiyukf.com",kefu:"qiyukf.com",super:"qiyukf.com"},path:{sdk:"\/sdk/",boss:"\/prd/",kefu:"\/prd/",super:"\/sup/"},online:{sdk:"\/sdk/",boss:"\/prd/",kefu:"\/prd/",super:"\/sup/"}};
-window.globalSetting = {};
-</script>
-<script>
-try{
-var corpCode = location.host.split('.')[0];
-}catch(err){
-corpCode = '';
-}
-window.qiyuWsSetting = {
-switch: 1,
-url: 'https://ws.qiyukf.com',
-options: {
-reconnection: true,
-reconnectionAttempts: 500,
-reconnectionDelay: 1000,
-randomizationFactor: 0.5,
-transports: ['websocket'],
-query: {
-events: '',
-code: corpCode
-}
-}
-}
-</script>
-<script>
-window.corpPermission = {CALLCENTER_RELAY:0,MESSAGE_INTERFACE:1,WORKSHEET_SLA_MAIL:1,WORKSHEET:1,VISIT_ANALYSIS:0,OUTCALL_SALE:0,USERCENTER_IMPORT:0,KNOWLEDGE_SAME_WORD:1,BACKCALL:1,IFRAME:0,CALLCENTER_TRANSFER_MOBILE:1,WORKSHEET_CUSTOME_FIELD:1,IVR:0,ANNOUNCEMENT:1,OVERFLOW:0,BLACK_LIST:1,OPETATE_LOGOPERATE_LOG:1,START_OFFLINE_SESSION:1,MONITOR:1,VISITOR_TRACK:1,CALLCENTER_ROUTER:0,SEND_MESSAGE:0,VISITOR_PIC:0,WORKSHEET_SLA_MESSAGE:1,VIP:1,CALLCENTER_VIP:0,USERCENTER:1,KNOWLEDGE_STATISTICS:1,WORKSHEET_TRIGGER:1,PERFORMANCE:1,WORKSHEET_AUTO_ASSIGN:1,CALLCENTER_IVR:0,ONLINE_SERVICE_TIME:1,SLA_MESSAGE_NOTIFY:0,WORKSHEET_MOBILE:1,OUTCALL_TASK:1,KNOWLEDGE_ISSUE:1,OUTCALL_INTERFACE:0,KNOWLEDGE_SAME_ASK:1,LARGE_SCREEN:0,WORKSHEET_UPDATE:0,VISITOR_CARD:1,CALLLOSS:1,VISITOR_RANK:0,WECHAT_BAN_WORD:1,DATA_EXPORT:0,CALLCENTER_SIP:1,QUALITY_CHECK:1,ROBOT_HELP_KEFU:0,SHOW_COMPANY_INFO:1,MIX_ROBOT:0,WORKSHEET_SYNC:0,KEFU_KNOWLEDGE:1,IVR_MONITOR:1,QUESTIONNAIRE:0,ROBOT:1};
-</script>
-<script src="https://qiyukf.com/script/3858be3c20ceb6298575736cf27858a7.js?uid=245303&hidden&name=³¬¼¶¹ÜÀíÔ±&mobile=13068709985&analyticSwitch=0&visitorRecordSwitch=0"></script>
-<script type="text/javascript">
-var profile = [{
-index: 0,
-key: 'corpName',
-label: 'ÆóÒµÃû³Æ',
-value: 'wuchuheng1',
-href: 'https://www.qiyukf.com/supervisor/cms/company/info/?code=wuchuheng1'
-}, {
-index: 1,
-key: 'corpCode',
-label: 'ÆóÒµÓòÃû',
-value: 'wuchuheng1'
-}, {
-index: 2,
-key:'corpServiceVersion',
-label:'µ±Ç°°æ±¾',
-value :'×¨Òµ°æ(ÊÔÓÃ)'
-}, {
-index : 3,
-key:'corpServiceName',
-label:'¿ªÍ¨Ä£¿é',
-value :'»úÆ÷ÈË,¹¤µ¥'
-}, {
-index : 4,
-key:'corpServiceDate',
-label:'×¢²áÊ±¼ä',
-value :'1521364984382'
-}
-]
-profile.push({
-index: profile.length,
-key: 'industry',
-label: 'ĞĞÒµ',
-value: '-- ÇëÑ¡Ôñ --'
-})
-profile.push({
-index: profile.length,
-key: 'level',
-label: '¿Í»§·Ö²ã',
-value: '-- ÇëÑ¡Ôñ --'
-})
-profile.push({
-index: profile.length,
-key: 'manager',
-label: '¿Í»§³É¹¦¾­Àí',
-value: ''
-})
-ysf.on({
-'onload': function(){
-ysf.config({
-groupid: window.setting.user.shuntGroup || 0, // ¿Í·ş×éid
-robotShuntSwitch: 1,
-profile: JSON.stringify(profile)
-});
-}
-})
-</script>
-<script type="text/javascript">
-document.getElementById('concatUsBoss').onclick = function(event) {
-event = event || window.event;
-event.preventDefault ? event.preventDefault() : event.returnValue = false;
-ysf.open();
-};
-if(window.cefQuery){
-try{
-document.getElementById('j-logout').addEventListener('click', function(){
-window._nativeApi.logout(window.setting.user.username);
-window._nativeApi.notifyKefuStatus(4) // ÉèÖÃÀëÏß
-})
-document.getElementById('j-switch_btn').addEventListener('click', function(){
-window._nativeApi.logout(window.setting.user.username);
-})
-}catch(e){}
-}
-</script>
-<script>
-window.Util = window.Util || {};
-window.Util.createAjax = function() {
-var xhr=null;
-if(window.XMLHttpRequest){
-xhr= new XMLHttpRequest();
-}else if(window.ActiveXObject){
-xhr= new ActiveXObject("Microsoft.XMLHTTP");
-}
-if (!xhr) {
-console.error("your browser not support ajax");
-return;
-}
-return xhr;
-};
-window.Util.ajax = function(conf,tp) {
-var type = tp || 'get',
-url = conf.url || "",
-data = conf.data || {},
-success = conf.success,
-error = conf.error;
-var xhr = Util.createAjax();
-try{
-xhr.open(type, url);
-xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-}catch(ex){
-error();
-return;
-}
-xhr.onreadystatechange = function () {
-if (xhr.readyState == 4) {
-if (xhr.status === 200) {
-success(eval("(" + xhr.responseText + ")"));
-} else {
-error()
-}
-}
-};
-if(data){
-xhr.send(data);
-}else{
-xhr.send(null);
-}
-};
-/* ×ªÎªformData¸ñÊ½ */
-window.Util.formData = function(obj) {
-var o = obj || {},
-s = "";
-for(p in o){
-s+=(p+"="+o[p]+"&");
-}
-s = s.slice(0,-1);
-return s;
-};
-</script>
-<script>
-(function () {
-function createAjax() {
-var xhr=null;
-if(window.XMLHttpRequest){
-xhr= new XMLHttpRequest();
-}else if(window.ActiveXObject){
-xhr= new ActiveXObject("Microsoft.XMLHTTP");
-}
-if (!xhr) {
-console.error("your browser not support ajax");
-return;
-}
-return xhr;
-}
-function ajax(conf) {
-var type = 'get',
-url = conf.url,
-success = conf.success,
-error = conf.error;
-var xhr = createAjax();
-try{
-xhr.open(type, url);
-}catch(ex){
-error();
-return;
-}
-xhr.onreadystatechange = function () {
-if (xhr.readyState == 4) {
-if (xhr.status === 200) {
-success(eval("(" + xhr.responseText + ")"));
-} else {
-error()
-}
-}
-};
-xhr.send(null);
-}
-setTimeout(function () {
-var token = window.setting && window.setting.token || '',
-slider = document.querySelector('.m-slider-announce'),
-sul = document.querySelector(".m-slider-announce .m-slider-ul"),
-icon = document.querySelector('.icon-slider'),
-url='/api/announce/list?token='+token+'&refer=boss';
-ajax({
-url:url,
-success:function (data) {
-var result = data.result,
-top = 0,
-times = 0;
-slider.style.maxWidth=document.body.clientWidth-780+"px";
-window.addEventListener('resize',function () {
-slider.style.maxWidth=document.body.clientWidth-780+"px";
-},false);
-if(!result.length) return;
-icon.style.display="inline-block";
-if(result.length ===1){
-addChild(sul,result[0]);
-return;
-}
-result.forEach(function (itm,index) {
-addChild(sul,itm);
-if(index === result.length-1){
-addChild(sul,result[0]);
-}
-});
-function addChild(slot,itm) {
-var li = document.createElement("li"),
-link = document.createElement('a');
-if(itm.link){
-var href= /^[http|https]/.test(itm.link)?itm.link: "//"+itm.link;
-link.setAttribute('href',href);
-link.setAttribute('target','_blank');
-link.classList.add("slider-item");
-}else{
-link.classList.add("slider-item-default");
-}
-li.innerHTML=itm.content;
-link.appendChild(li);
-slot.appendChild(link);
-}
-function animation() {
-top++;
-times++;
-if(top === result.length*18) top=0;
-sul.style.top=-top+"px";
-if(times === 18) {times=0; return;}
-requestAnimationFrame(animation);
-}
-var interval = setInterval(function () {
-animation();
-},3000);
-document.addEventListener("visibilitychange", function() {
-if(document.visibilityState === "visible"){
-clearInterval(interval);
-interval=setInterval(function () {
-animation();
-},3000);
-}else if(document.visibilityState === "hidden"){
-clearInterval(interval);
-}
-},false);
-sul.addEventListener("mouseenter",function () {
-clearInterval(interval);
-},false);
-sul.addEventListener("mouseleave",function () {
-clearInterval(interval);
-interval=setInterval(function () {
-animation();
-},3000);
-},false);
-},
-error:function () {
-console.error("»ñÈ¡¹«¸æÁĞ±íÊ§°Ü,ÇëÉÔºóÔÙÊÔ");
-}
-})
-},0)
-})()
-</script>
-<script type="text/javascript">
-window.SensorsOnlineToken = true;
-</script>
-<script>
-(function(para) {
-var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script',x = null,y = null;
-w['sensorsDataAnalytic201505'] = n;
-w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};
-var ifs = ['track','quick','register','registerPage','registerOnce','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','trackLink','clearAllRegister','getAppStatus'];
-for (var i = 0; i < ifs.length; i++) {
-w[n][ifs[i]] = w[n].call(null, ifs[i]);
-}
-if (!w[n]._t) {
-x = d.createElement(s), y = d.getElementsByTagName(s)[0];
-x.async = 1;
-x.src = p;
-x.setAttribute('charset','UTF-8');
-y.parentNode.insertBefore(x, y);
-w[n].para = para;
-}
-})({
-sdk_url: 'https://qiyukf.nosdn.127.net/prd/res/sensors/sensorsdata.min.js?9435bf22c39e55209e2547c6ba10bfab',
-heatmap_url: 'https://qiyukf.nosdn.127.net/prd/res/sensors/heatmap.min.js?40fcf313f6ca251ff940e581e063edb3',
-name: 'sa',
-server_url:'https://sensors-api.qiyukf.com/sa?project='+(window.SensorsOnlineToken?'default':'test'),
-web_url:'https://sensors-api.qiyukf.com/sa?project='+(window.SensorsOnlineToken?'default':'test'),
-heatmap:{
-//ÉèÖÃ¶àÉÙºÁÃëºó¿ªÊ¼äÖÈ¾µã»÷Í¼,ÒòÎª¸Õ´ò¿ªÒ³ÃæÊ±ºòÒ³ÃæÓĞĞ©ÔªËØ»¹Ã»¼ÓÔØ
-loadTimeout: 3000,
-//ÓÃ»§µã»÷£¨a£¬button£¬input£©ÕâĞ©ÔªËØÊ±»á´¥·¢Õâ¸öº¯Êı£¬ÈÃÄãÀ´ÅĞ¶ÏÊÇ·ñÒª²É¼¯µ±Ç°Õâ¸öÔªËØ£¬·µ»ØÕæ±íÊ¾²É¼¯£¬·µ»Ø¼Ù±íÊ¾²»²É¼¯¡£
-//²»ÉèÖÃÕâ¸öº¯Êı£¬Ä¬ÈÏÊÇ²É¼¯ a button input ÕâĞ©±êÇ©¡£
-collect_element: function(element_target){
-if(element_target.getAttribute('data-sensorsheatmap') === 'trackHeatMap'){
-return true;
-}else{
-return false;
-}
-},
-},
-show_log: false,
-source_channel:['hmsr','hmpl','hmkw']
-});
-sa.qiyuRoleMap = {
-2 : '³¬¼¶¹ÜÀíÔ±',
-1 : '¹ÜÀíÔ±',
-0 : 'ÆÕÍ¨¿Í·ş',
-"-1" : '¹¤µ¥¿Í·ş',
-"-10" : 'Demo¿Í·ş'
-};
-sa.registerPage({
-'url': location.href,
-platform : "¹ÜÀí¶Ë",
-kefuId : 245303,
-roleName : sa.qiyuRoleMap[2] || '',
-});
-sa.identify("wuchuheng1");
-sa.login("wuchuheng1");
-sa.quick('autoTrack');
-</script>
-<script>
-//°ïÖúÖĞĞÄ
-var state__help = document.getElementById('state__help');
-if (state__help) {
-state__help.onclick = function(event) {
-sa.track('help_helpcenter', {
-kefuId : 245303,
-corpId: "wuchuheng1"
-});
-};
-}
-</script>
-<script>
-window.logSetting = { serverAddr : '//qy-swallow.qiyukf.com', version: 'v3.10.0' }
-// Set debug
-window.localStorage.setItem('debug', '');
-window.localStorage.setItem('debugNums', 0);
-</script>
-<script>
-window.setting = {
-user:{shuntGroup:183244,type:0,isShowMoreInfoTab:1,shuntSwitch:1,corpInfoUrl:"https://www.qiyukf.com/supervisor/cms/company/info/?code=wuchuheng1",username:"wuchuheng1@163.com",corpCode:"wuchuheng1",role:2,restTime:0,tipsInfo:{corpOrderPerformance:1},pinyin:"chaojiguanliyuan",isformal:1,nickname:"³¬¼¶¹ÜÀíÔ±",merchantInfo:{weixinAccessSwitch:false,bid:""},email:"wuchuheng1@163.com",mobile:"13068709985",createTime:1521364984382,onlineStatus:9,id:245303,authority:{ADMIN_REPORT_WORKSHEET:1,KEFU_LEAVE_GROUP:1,WORKSHEET_CREATE:1,CALL_DETAIL_SELF:0,SESSION_SAT:1,WORKSHEET:1,SESSION_ALERT:1,ADMIN_SETTING:1,KEFU_CHAT:1,SESSION_GROUP:1,ADMIN_INDEX:1,ADMIN_KEFU:1,MAILBOX_SEND:1,KEFU_CALL:0,ADMIN_KEFU_WRITE:1,SESSION_INDIVIDUAL:1,KEFU_LEAVE_ALL:1,CALL_DETAIL_ALL:1,ADMIN_REPORT_DATA_GROUP:0,ADMIN_REPORT_DATA_ALL:1,ADMIN_CUSTOMER:1,KEFU_SETTING:1,MONITOR_IN_GROUP_SESSION:0,WORKSHEET_REOPEN:1,ADMIN_INDEX_DATA_GROUP:0,ADMIN_CALL_BLOCKING:1,ADMIN_CALL_SETTING:1,KEFU_CALL_OUT:0,KEFU_MONITOR:1,WORKSHEET_SEARCH:1,CALL_DETAIL_GROUP:0,WORKSHEET_ALL_SESSION:1,CALL_DATA_DISPLAY_ALL:1,SESSION_ROBOT:1,ADMIN_INDEX_DATA_ALL:1,WORKSHEET_TRANSFER:1,ADMIN_CALL:1,SESSION:1,CALL_OUT_TASK:1,ADMIN_REPORT_ROBOT:1,ADMIN_DASHBOARD_MIXED:0,WORKSHEET_OPERATE_ALL:1,ADMIN_REPORT:1,ADMIN_COMPANY:1,SESSION_ALL:1,KEFU_LEAVE:1,ADMIN_DASHBOARD_SESSION:0,ADMIN_ROBOT:1,ADMIN_QUALITY:1,KEFU_QUALITY:1,CALL_DATA_DISPLAY_GROUP:0,MONITOR_ALL_SESSION:1,WORKSHEET_FINISH:1,ADMIN_DASHBOARD_CALL:0},corpName:"wuchuheng1",kefuSessionSort:1,switch2Manage:1,hasOrderPerformance:0,theme:0,kefuRobotHelper:1,iframeStorage:0,corpService:{prepaid:0,crmInfo:[{value:"-- ÇëÑ¡Ôñ --",label:"ĞĞÒµ",key:"industry"},{value:"-- ÇëÑ¡Ôñ --",label:"¿Í»§·Ö²ã",key:"level"},{value:"",label:"¿Í»§³É¹¦¾­Àí",key:"manager"}],worksheetService:{seat:999,state:1,dateEnd:1521993599999,available:true,dateStart:1521364984731,type:0},multiService:{chargeIn:-1,name:"×¨Òµ°æ",cash:0,state:-2,dateEnd:1521993599000,seats:0,dateStart:1521364984000,type:15,chargeOut:-1,supplier:0},questionNaireService:{state:0},messageService:{state:0},robotService:{infinite:true,name:"ÌåÑéÌ×²Í",state:1,dateEnd:1521993599999,available:true,dateStart:1521364984731,type:6,restFlow:0},ipccService:{chargeIn:-1,name:"×¨Òµ°æ",cash:0,state:0,dateEnd:1521993599000,seats:0,dateStart:1521364984000,type:15,chargeOut:-1,supplier:0},onlineService:{name:"×¨Òµ°æ",state:1,dateEnd:1521993599000,seats:-1,dateStart:1521364984000,type:15}},realname:"³¬¼¶¹ÜÀíÔ±"},
-token:'AFMEE6HT40AV0U6J9KSRLUOJPFK6XX8Z'
-};
-</script>
-<script>
-window.User = setting.user;
-</script>
-<script src="https://qiyukf.nosdn.127.net/prd/bs/core_4362772e422c3ebef29f9ebbeeb85377.js"></script>
-<script>
-I$("63a78c1607b8aa00f786b3a629b13829",function(t,e,i,a,n){a._$$Module=t._$klass();n=a._$$Module._$extend(e._$$Module);n.__init=function(t){this.__super(t)};n.__reset=function(t){this.__super(t)};n.__destroy=function(){this.__super()}},"ee1615ff40f73c770636c323c0e4c4f2","60f117ace91259edd35196b4846e955c","6478d8a98fcdf9a87c4a2f6cb005b151");I$("28e151c51551b9455a40e54978cbddcc",function(t){t._$$Module._$allocate({User:User})},"63a78c1607b8aa00f786b3a629b13829");
-</script>
-<script src="https://qiyukf.nosdn.127.net/prd/res/javascript/webkit.js?41aa5c14e6586ea02bebab85a8270ca6"></script>
-<script>
-var _gaq = _gaq || [];
-</script>
-<script>
-window.Util = window.Util || {};
-window.Util.createAjax = function() {
-var xhr=null;
-if(window.XMLHttpRequest){
-xhr= new XMLHttpRequest();
-}else if(window.ActiveXObject){
-xhr= new ActiveXObject("Microsoft.XMLHTTP");
-}
-if (!xhr) {
-console.error("your browser not support ajax");
-return;
-}
-return xhr;
-};
-window.Util.ajax = function(conf,tp) {
-var type = tp || 'get',
-url = conf.url || "",
-data = conf.data || {},
-success = conf.success,
-error = conf.error;
-var xhr = Util.createAjax();
-try{
-xhr.open(type, url);
-xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-}catch(ex){
-error();
-return;
-}
-xhr.onreadystatechange = function () {
-if (xhr.readyState == 4) {
-if (xhr.status === 200) {
-success(eval("(" + xhr.responseText + ")"));
-} else {
-error()
-}
-}
-};
-if(data){
-xhr.send(data);
-}else{
-xhr.send(null);
-}
-};
-/* ×ªÎªformData¸ñÊ½ */
-window.Util.formData = function(obj) {
-var o = obj || {},
-s = "";
-for(p in o){
-s+=(p+"="+o[p]+"&");
-}
-s = s.slice(0,-1);
-return s;
-};
-</script>
-<script>
-(function(){
-/* ½ö¶Ô¹ÜÀíÔ±ÆğĞ§ */
-if(window.setting.user.role<=0){return}
-setTimeout(function () {
-var token = window.setting.token,
-url='/api/corp/service/tips/get?token='+token;
-Util.ajax({
-url:url,
-success:function (data) {
-/* ³õÊ¼»¯: Êı¾İ */
-var result = data.result && data.result.tips,
-packages = result.packages || [], // Òì²½»ñÈ¡µÄÊı¾İ
-title = '·şÎñ¼´½«µ½ÆÚÌáĞÑ', // ÌáĞÑ±êÌâ
-content = "", // ÌáĞÑÄÚÈİÁĞ±í²¿·Ö
-board ="", // ÌáĞÑÄÚÈİÊı×ÖÈÕÀú²¿·Ö
-btnText = "ºÃµÄ,ÖªµÀÁË", // °´Å¥ÎÄ±¾
-corp = setting.user.corpCode || "corp", // ÆóÒµcode
-user = setting.user.id || 0, // ¹ÜÀíÔ±id
-tpl ="", // Ä£Ì¬´°Ä£°å
-flag_modal = 0, // ÊÇ·ñÏÔÊ¾ÒÔ¼°ÕûÌåÌáĞÑÇ¿¶È±êÊ¶(°´×îÇ¿);
-now_date = result.date || Date.parse(new Date()), // ·şÎñÆ÷»ò±¾µØÊ±¼ä´Á
-now_date_0 = (new Date(now_date)).setHours(0,0,0,0) || (new Date()).setHours(0,0,0,0); // µ±Ìì0µãÊ±¼ä´Á
-/* localstorageÈ¡Öµ(ÃüÃû¹æÔò:ÆóÒµ+ÓÃ»§+Ì×²Í) */
-var ls_online = localStorage.getItem('_' + corp + '_' + user + '_online') || 0,
-ls_robot = localStorage.getItem('_' + corp + '_' + user + '_robot') || 0,
-ls_callcenter = localStorage.getItem('_' + corp + '_' + user + '_callcenter') || 0,
-ls_date = localStorage.getItem('_' + corp + '_' + user + '_date') || 0;
-/* Ãû³ÆÓ³Éä */
-var nameMap = {
-"online":"Ê£ÓàÌìÊı(Ìì)",
-"robot":"Ê£Óà»á»°ÌõÊı(Ìõ)",
-"callcenter":"Óà¶î(Ôª)"
-};
-packages.forEach(function(item,index){
-/* ÌáĞÑÄÚÈİ:Êı×ÖÁĞ±íÄ£°å */
-if(item.html){ // µ±¹ıÆÚÊ±,ºó¶Ë»á´«»Ønull,´ËÊ±²»ÏÔÊ¾ÎÄ°¸
-var boardItemTpl = [
-"<div class='board_item'>",
-"<div class='title'>",
-nameMap[item.name],
-"</div>",
-"<div class='num'>",
-item.num,
-"</div>",
-"</div>"
-];
-board += boardItemTpl.join('');
-content += item.html ;
-}
-/* ÊÇ·ñÌáĞÑ */
-if(item.type == 1 || item.type == 2){
-/* ÒÑÕ¹Ê¾ */
-if(localStorage.getItem('_' + corp + '_' + user + '_' + item.name) == 1){
-var dist = now_date - ls_date;
-/* Ç¿ÌáĞÑÇÒ³¬¹ıÒ»Ìì,ÖÃ0 */
-if(dist > 24*60*60*1000 && item.type == 2){
-flag_modal = item.type;
-localStorage.setItem('_' + corp + '_' + user + '_' + item.name , 0);
-}
-/* Î´Õ¹Ê¾ */
-}else{
-flag_modal = flag_modal > item.type ? flag_modal :item.type;
-}
-localStorage.setItem('_' + corp + '_' + user + '_date' , now_date_0);
-}
-});
-/* Ä£Ì¬´°Ä£°å */
-tpl =[
-"<div class='modal_dialog'>",
-"<div class='modal_hd'>",
-"<div class='modal_close'><i class='u-icon-close' id='_modal_packageWarn_btn_c'></i></div>",
-"<h3 class='modal_title'>",
-title,
-"</h3>",
-"</div>",
-"<div class='modal_bd'>",
-"<div class='modal_bd_item board'>",
-"<div class='m-tipBoard'>",
-board,
-"</div>",
-"</div>",
-content,
-"</div>",
-"<div class='modal_ft'>",
-"<a class='u-btn' id='_modal_packageWarn_btn_b'>",
-btnText,
-"</a>",
-"</div>",
-"</div>"
-];
-/* Ä£Ì¬´°ÊÇ·ñÏÔÊ¾ */
-if(flag_modal){
-/* ³õÊ¼»¯½Úµã */
-var modal = document.createElement("div");
-modal.setAttribute("class","m-modal m-modal-packageWarn");
-modal.setAttribute("id","_modal-packageWarn");
-modal.innerHTML = tpl.join("");
-document.body.append(modal);
-/* localStorage·½·¨ */
-var ls_showed = function(){
-packages.forEach(function(item,index){
-if(item.type == 1 || item.type == 2){
-localStorage.setItem('_' + corp + '_' + user + '_' + item.name , 1);
-}
-});
-};
-/* ¼àÌı */
-var _btn_ok = document.getElementById('_modal_packageWarn_btn_b') ,
-_btn_close = document.getElementById('_modal_packageWarn_btn_c');
-_btn_ok.addEventListener('click',function (event) {
-event.preventDefault();
-event.stopPropagation();
-document.getElementById('_modal-packageWarn').style.display = 'none';
-ls_showed();
-});
-_btn_close.addEventListener('click',function (event) {
-event.preventDefault();
-event.stopPropagation();
-document.getElementById('_modal-packageWarn').style.display = 'none';
-ls_showed();
-});
-}
-},
-error:function () {
-console.error("»ñÈ¡Ì×²ÍÏûÏ¢Ê§°Ü");
-}
-},"GET");
-},0);
-})()
-</script>
-<script>
-(function(){
-if(window.setting.user.role == -10){
-return;
-}
-/* nps½á¹¹Ä£°å */
-var tpl = [
-'<span class="u-closed j-close">&times;</span><div class="m-nps"><div class="nps_form j-Form" style="display: block;"><div class="form_head j-Form-title">',
-'</div><div class="form_body"><ul class="scoreList j-Form-list"><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10<p class="ico">×î¸ß·Ö</p></li></ul><div class="msgBox j-Form-msgBox" style="display: none"><span class="u-btn j-Form-send">·¢ËÍ</span><div class="ipt"><input class="j-Form-ipt" type="text" placeholder="ÇëÊäÈëÄãµÄ´ò·ÖÔ­Òò£¨Ñ¡Ìî£©" maxlength="500"></div></div></div></div><div class="nps_bye j-Bye" style="display: none"><div class="bd_item title"><i class="u-icon-font icon-circle-ok"></i><span class="title">¸ĞĞ»ÄãµÄÆÀ¼Û</span></div><div class="bd_item animText"><span class="text j-Bye-count">',
-'</span></div><div class="bd_item operate"><span class="u-btn btn-close j-countdonw-btn">¹Ø±Õ</span></div></div></div></div>'
-];
-/* confirmÄ£Ì¬´°½á¹¹Ä£°å */
-var confirmTpl = [
-'<div class="modal_dialog"><div class="modal_hd"></div><div class="modal_bd j-confirm-title"><p class="text j-confirm-text">',
-'</p></div><div class="modal_ft"><span class="u-btn btn-ok j-confirm-ok">È·¶¨</span><span class="u-btn btn-cancel j-confirm-cancel">È¡Ïû</span></div></div>'
-];
-/* Êı¾İ */
-var data = {
-status:0, //nps×´Ì¬:0¹Ø±Õ,1ÆÀ·Ö×´Ì¬,2ÊäÈë×´Ì¬,3ÆÀ·ÖÍê±Ï
-score:0, // ÆÀ·Ö,0Î´Ñ¡,1-10·ÖÊı
-text:"", // ÆÀÓï
-type:0, // ÊÇ·ñ·ÅÆú,0·ÅÆú,1ÓĞĞ§
-exitSeconds:3 // ×´Ì¬3ÆÀ·ÖÍê±ÏÊ±,µ¹¼ÆÊ±Ê±¼äÃë
-};
-var t = null; // µ¹¼ÆÊ±¼ÆÊ±Æ÷
-/* ³õÊ¼»¯Êı¾İ */
-setTimeout(function () {
-var token = window.setting.token,
-url='/api/corp/service/tips/get?token='+token;
-Util.ajax({
-url:url,
-success:function (json) {
-if(json.code!=200){
-return;
-}
-var result = json.result.nps;
-if(result.push){
-/* Æ´½ÓnpsÄ£°åÎªhtml×Ö·û´® */
-var div = document.createElement("div");
-tpl.splice(1,0,result.title);
-div.innerHTML = tpl.join('');
-div.setAttribute("class","g-nps");
-div.setAttribute("id","_nps");
-div.style.display='block';
-/* ½«ĞÂ½Úµã²åÈë¸ù½Úµã */
-document.body.appendChild(div);
-/* Ãæ°å×´Ì¬=1 */
-data.status = 1;
-/* ¼àÌıdom*/
-var _nps = document.getElementById('_nps') , // nps´óÈİÆ÷
-_nps_close = _nps.getElementsByClassName('j-close')[0], // ¹Ø±Õ°´Å¥
-_nps_Form = _nps.getElementsByClassName('j-Form')[0], // [ÆÀ·ÖÃæ°å]
-_nps_Form_ul = _nps.getElementsByClassName('j-Form-list')[0], // ÆÀ·ÖÃæ°å-listÈİÆ÷
-_nps_Form_lis = _nps.getElementsByClassName('j-Form-list')[0].getElementsByTagName("LI"),// ÆÀ·ÖÃæ°å-list-li¼¯ºÏ
-_nps_Form_msgBox= _nps.getElementsByClassName('j-Form-msgBox')[0], // ÆÀ·ÖÃæ°å-ÏûÏ¢ÈİÆ÷
-_nps_Form_send = _nps.getElementsByClassName('j-Form-send')[0], // ÆÀ·ÖÃæ°å-·¢ËÍ°´Å¥
-_nps_Form_ipt = _nps.getElementsByClassName('j-Form-ipt')[0], // ÆÀ·ÖÃæ°å-ÊäÈë¿ò¿Ø¼ş
-_nps_Bye = _nps.getElementsByClassName('j-Bye')[0], // [µ¹¼ÆÊ±Ãæ°å]
-_nps_Bye_text = _nps.getElementsByClassName('j-Bye-count')[0], // µ¹¼ÆÊ±Ãæ°å-µ¹¼ÆÊ±ÎÄ×Ö
-_nps_Bye_close = _nps.getElementsByClassName('j-countdonw-btn')[0];// µ¹¼ÆÊ±Ãæ°å-°´Å¥
-/* form-µã»÷¹Ø±Õ */
-_nps_close.addEventListener('click',function (event) {
-event.preventDefault();
-event.stopPropagation();
-if(trim(_nps_Form_ipt.value,'all')){
-console.log('_nps_close:',trim(_nps_Form_ipt.value,'all'));
-confirm(confirmTpl,['È·¶¨·ÅÆúÆÀ¼Û£¿·ÅÆúºó²»¿É»Ö¸´'],document.body);
-}else{
-post({
-type:0
-});
-data.status = 0;
-data.text = "";
-}
-});
-/* form-lisµã»÷ */
-_nps_Form_ul.addEventListener('click',function (event) {
-event.preventDefault();
-event.stopPropagation();
-var target = event.target;
-if(target.tagName == "LI"){
-if(_nps_Form_msgBox.style.display != 'block'){
-_nps_Form_msgBox.style.display='block';
-}
-Array.prototype.forEach.call(_nps_Form_lis,function (item,index) {
-item.classList.remove('z-sel');
-if(item == target){
-data.score = index;
-}
-});
-target.classList.add('z-sel');
-}
-data.status = 2; // ×´Ì¬ÎªÊäÈë×´Ì¬
-data.type = 1; // ÓĞĞ§ÊäÈë
-});
-/* form-µã»÷·¢ËÍ */
-_nps_Form_send.addEventListener('click',function (event) {
-event.preventDefault();
-event.stopPropagation();
-data.text = trim(_nps_Form_ipt.value,'all');
-post({
-type:data.type,
-score:data.score,
-text:_nps_Form_ipt.value
-});
-data.status = 3; // ×´Ì¬Îªµ¹¼ÆÊ±Ãæ°å
-});
-/* bye-µã»÷¹Ø±Õ */
-_nps_Bye_close.addEventListener('click',function (e) {
-e.preventDefault();
-e.stopPropagation();
-clearInterval(t);
-document.body.removeChild(_nps);
-});
-/* ¸÷ÖÖ·½·¨ */
-/*
-* ¹Ø±ÕÊ±µÄconfirmµ¯´°
-* @param tpl [arr],Ä£°å
-* @param arr [arr],Ä£°åÊı¾İ
-* @param elm [domNode],injectµ½ÄÄ¸öÈİÆ÷
-* */
-function confirm(tpl,arr,elm) {
-/* ÊµÀı»¯confirm */
-var div = document.createElement("div");
-var tpl = JSON.parse(JSON.stringify(tpl));
-div.setAttribute("class","m-modal m-confirm-nps j-confirm-nps");
-tpl.splice(1,0,arr[0]);
-div.innerHTML = tpl.join('');
-div.style.display='block';
-elm.appendChild(div);
-/* ¼àÌı */
-var node = document.getElementsByClassName('j-confirm-nps')[0],
-btnOk = node.getElementsByClassName('j-confirm-ok')[0],
-btnCancel = node.getElementsByClassName('j-confirm-cancel')[0];
-btnOk.addEventListener('click',function (e) {
-e.preventDefault();
-e.stopPropagation();
-post({type:0});
-document.body.removeChild(node);
-document.body.removeChild(_nps);
-div = null;
-data.status = 0;
-});
-btnCancel.addEventListener('click',function (e) {
-e.preventDefault();
-e.stopPropagation();
-document.body.removeChild(node);
-div = null;
-});
-}
-/*
-* µ¹¼ÆÊ±¶¯»­
-* @param sec
-* */
-function coutdown(seconds) {
-var seconds = seconds || 0;
-var t = setInterval(function () {
-if(seconds<=0){
-clearInterval(t);
-_nps.style.display = 'none';
-document.body.removeChild(_nps);
-return;
-}
-_nps_Bye_text.innerText = seconds + "Ãëºó×Ô¶¯¹Ø±Õ";
-seconds --;
-},1000);
-}
-/*
-* postÇëÇó
-* @param data [obj],ÇëÇó²ÎÊı
-* */
-function post(dt) {
-setTimeout(function () {
-var token = window.setting.token,
-url = '/api/corp/service/tips/nps/post?token=' + token;
-var formData = Util.formData(dt); // ×ªÎªformData
-Util.ajax({
-url: url,
-data:formData,
-success: function (result) {
-if(data.status == 0){
-_nps.style.display = 'none';
-}else if(data.status == 3){
-_nps_Form.style.display = 'none';
-_nps_close.style.display = 'none';
-_nps_Bye.style.display = 'block';
-coutdown(3);
-}
-},
-error:function (json) {
-console.log("error:",json);
-}
-},"POST");
-});
-}
-/*
-* trim È¥¿Õ¸ñ
-* @param v [string],´«ÈëµÄ×Ö·û´®
-* @param tp [string],È¥¿Õ¸ñÀàĞÍ,leftÎª×ó²àÈ¥¿Õ¸ñ,rightÎªÓÒ²àÈ¥¿Õ¸ñ,allÎªÇ°ºó¶¼È¥¿Õ¸ñ(Ä¬ÈÏ)
-* */
-function trim(v,tp){
-var value = v || "";
-var type = tp || 'all';
-var regLeft = /(^\s*)/g;
-var regRight = /(\s*$)/g;
-var regAll = /(^\s*)|(\s*$)/g;
-if(type == 'all'){
-return v.replace(regAll,"")
-}else if(type == 'left'){
-return v.replace(regLeft,"")
-}else if(type == 'right'){
-return v.replace(regRight,"")
-}
-}
-}
-},
-error:function () {
-console.error("»ñÈ¡npsÏûÏ¢Ê§°Ü");
-}
-},"GET");
-},0);
-})()
-</script><script>
-(function(){
-if(window.setting.user.role == -10){return;}
-/* Ä£°å - nfs */
-var tpl = [
-'<div class="m-global-nfs"><span class="u-closed j-close">&times;</span><div class="nfs_main">',
-'</div></div>'
-];
-/* Ä£°å - confirm */
-var confirmTpl = [
-'<div class="modal_dialog"><div class="modal_hd"></div><div class="modal_bd j-confirm-title"><p class="text j-confirm-text">',
-'</p></div><div class="modal_ft"><span class="u-btn btn-ok j-confirm-ok">È·¶¨</span><span class="u-btn btn-cancel j-confirm-cancel">È¡Ïû</span></div></div>'
-];
-/* ³õÊ¼»¯Êı¾İ */
-setTimeout(function () {
-var token = window.setting.token,
-getUrl='/api/corp/service/tips/nfs/get?token='+token+'&refer=boss',
-postUrl = '/api/corp/service/tips/nfs/post?token=' + token+'&refer=boss';
-Util.ajax({
-url:getUrl,
-success:function (json) {
-var result = json.result;
-if(json.code!=200){ return }
-if(result.push!=1){ return }
-/* Æ´½Ónfs×Ö·û´® */
-var div = document.createElement("div");
-var linkTag_start1 = '<a class="link" href=\" ';
-var linkTag_start2 = '\" target="_blank">';
-var linkTag_end = '</a>';
-var imgTag_start = '<img class="img_main" src=\" ';
-var imgTag_end = '\" > ';
-var insertStr = '';
-/* ²åÈëµÄ×Ö·û´®ÄÚÈİ */
-if(result.link){
-insertStr = linkTag_start1 + fillUrl(result.link) + linkTag_start2 + imgTag_start + result.img + imgTag_end + linkTag_end;
-}else{
-insertStr = imgTag_start + result.img + imgTag_end;
-}
-/* ²åÈë×Ö·û´® */
-tpl.splice(1,0,insertStr);
-div.innerHTML = tpl.join('');
-/* ÉèÖÃ½ÚµãÊôĞÔ */
-div.setAttribute("class","g-global-nfs");
-div.setAttribute("id","_nfs");
-div.style.display='block';
-/* ½«ĞÂ½Úµã²åÈë¸ù½Úµã */
-document.body.appendChild(div);
-/* ¼àÌıdom*/
-var _nfs = document.getElementById('_nfs') , // nfs´óÈİÆ÷
-_nfs_close = _nfs.getElementsByClassName('j-close')[0]; // ¹Ø±Õ°´Å¥
-/* nfsµã»÷¹Ø±Õ */
-_nfs_close.addEventListener('click',function (event) {
-event.preventDefault();
-event.stopPropagation();
-post({
-push:0
-});
-});
-/*
-* postÇëÇó
-* @param opt [obj],ÇëÇó²ÎÊı
-* */
-function post(opt) {
-setTimeout(function () {
-var formData = Util.formData(opt); // ×ªÎªformData
-Util.ajax({
-url: postUrl,
-data:formData,
-success: function (result) {
-_nfs.style.display = 'none';
-},
-error:function (json) {
-console.log("error:",json);
-}
-},"POST");
-});
-}
-/*
-* url²¹È«
-* @param url [string]
-* @return [string]
-* */
-function fillUrl(url) {
-var reg = /^http\.*/i;
-if(reg.test(url)){
-return url;
-}else{
-return '//'+url;
-}
-}
-},
-error:function () {
-console.error("»ñÈ¡nfsÏûÏ¢Ê§°Ü");
-}
-},"GET");
-},0);
-})()
-</script></body>
+        </script>
+    </head>
+    <body class="g-flex">
+        <nav class="g-nav" id="j-nav-narrow">
+            <script>
+                (function(){
+                    //ç”¨æˆ·åtoggle
+                    window.userState = {
+                        toggle:function(event) {
+                            var node = document.getElementById('user-info'),
+                                classNames = node.className;
+                            if(classNames.indexOf('j-toggle') !== -1) node.className = "f-ib info";//å…³é—­ç”¨æˆ·ä¿¡æ¯é¢æ¿
+                            else {
+                                node.className = "f-ib info j-toggle";//æ‰“å¼€ç”¨æˆ·ä¿¡æ¯ï¼Œå…³é—­å‘¼å«å’Œå®¢æœåœ¨çº¿é¢æ¿
+                                //å…³é—­å‘¼å«é¢æ¿
+                                var callNode = document.getElementById('call-panel');
+                                if(callNode) callNode.className = callNode.className.replace('open','close');
+                                //å…³é—­å®¢æœåœ¨çº¿é¢æ¿
+                                var statusNode = document.getElementById('kefu-status');
+                                if(statusNode) statusNode.className = statusNode.className.replace('j-toggle','');
+                                //è”ç³»å®¢æœé¢æ¿æ”¶èµ·
+                                var contactKefuNode = document.getElementById('contact_kefu');
+                                if (contactKefuNode) contactKefuNode.className = contactKefuNode.className.replace('j-toggle','');
+                                //ä¸‹è½½ä¸­å¿ƒé¢æ¿æ”¶èµ·
+                                window.__downloadCenter && window.__downloadCenter.hideDownLoadTipView();
+                            }
+                            if(!event.target.href) event.stopPropagation();//å½“æœ‰é“¾æ¥æ—¶ï¼Œä¸é˜»æ­¢äº‹ä»¶å†’æ³¡
+                        },
+                        contactKefuToggle: function(event) {
+                            var contactKefuNode = document.getElementById('contact_kefu'),
+                                contactKefuClassName = contactKefuNode.className;
+                            if (contactKefuClassName.indexOf('j-toggle') !== -1) {
+                                //è”ç³»å®¢æœé¢æ¿æ”¶èµ·
+                                contactKefuNode.className = "f-ib contact_kefu";
+                            } else {
+                                //è”ç³»å®¢æœé¢æ¿æ‰“å¼€
+                                contactKefuNode.className = "f-ib contact_kefu j-toggle";
+                                //å…³é—­å‘¼å«é¢æ¿
+                                var callNode = document.getElementById('call-panel');
+                                if(callNode) callNode.className = callNode.className.replace('open','close');
+                                //å…³é—­å®¢æœåœ¨çº¿é¢æ¿
+                                var statusNode = document.getElementById('kefu-status');
+                                if(statusNode) statusNode.className = statusNode.className.replace('j-toggle','');
+                                //å…³é—­ç”¨æˆ·ä¿¡æ¯é¢æ¿
+                                var userInfoNode = document.getElementById('user-info');
+                                if (userInfoNode) userInfoNode.className = userInfoNode.className.replace('j-toggle','');
+                                //ä¸‹è½½ä¸­å¿ƒé¢æ¿æ”¶èµ·
+                                window.__downloadCenter && window.__downloadCenter.hideDownLoadTipView();
+                            }
+                            if(!event.target.href) event.stopPropagation();//å½“æœ‰é“¾æ¥æ—¶ï¼Œä¸é˜»æ­¢äº‹ä»¶å†’æ³¡
+                        },
+                        downloadCenterToggle: function(event) {
+                            //å…³é—­è”ç³»å®¢æœé¢æ¿
+                            var contactKefuNode = document.getElementById('contact_kefu');
+                            if (contactKefuNode) contactKefuNode.className = contactKefuNode.className.replace('j-toggle','');
+                            //å…³é—­ç”¨æˆ·ä¿¡æ¯é¢æ¿
+                            var userInfoNode = document.getElementById('user-info');
+                            if (userInfoNode) userInfoNode.className = userInfoNode.className.replace('j-toggle','');
+                            var downloadCenterNode = document.getElementById('m-header-download'),
+                                classNames = downloadCenterNode.className;
+                            if(classNames && classNames.indexOf('j-toggle') !== -1) {
+                                //å…³é—­ä¸‹è½½ä¸­å¿ƒé¢æ¿
+                                window.__downloadCenter && window.__downloadCenter.hideDownLoadTipView();
+                            } else {
+                                //æ‰“å¡ä¸‹è½½ä¸­å¿ƒé¢æ¿
+                                window.__downloadCenter && window.__downloadCenter.showDownLoadTipView();
+                            }
+                            if(!event.target.href) event.stopPropagation();//å½“æœ‰é“¾æ¥æ—¶ï¼Œä¸é˜»æ­¢äº‹ä»¶å†’æ³¡
+                        },
+                        init:function() {
+                            var that = this;
+                            setTimeout(function(){
+                                var node = document.getElementById('user-info');
+                                node.addEventListener('click', that.toggle);
+                                var contactKefuNode = document.getElementById('contact_kefu');
+                                contactKefuNode.addEventListener('click', that.contactKefuToggle);
+                                var downloadCenterNode = document.getElementById('m-header-download');
+                                downloadCenterNode.addEventListener('click', that.downloadCenterToggle);
+                                //ç‚¹å‡»å…¶ä»–ç©ºç™½åŒºåŸŸéšè—
+                                document.addEventListener('click',function() {
+                                    node.className = "f-ib info";
+                                    //è”ç³»å®¢æœé¢æ¿æ”¶èµ·
+                                    contactKefuNode.className = "f-ib contact_kefu";
+                                });
+                            }, 500);
+                        }
+                    };
+                    window.userState.init();
+                    // å¯¼èˆªçŠ¶æ€
+                    window.navState = {
+                        navIndex : -1,
+                        toggle : function(event){
+                            var node = document.getElementById('j-nav-narrow'),
+                                body = document.body,
+                                classNames = node.className,
+                                storage = window.localStorage;
+                            if(classNames.indexOf('g-nav-narrow') > -1){
+                                node.className = 'g-nav';
+                                body.className = 'g-flex';
+                                storage.setItem('nav-state', 0);
+                            }else{
+                                node.className = 'g-nav g-nav-narrow';
+                                body.className = 'g-flex g-flex-narrow';
+                                storage.setItem('nav-state', 1);
+                            }
+                            setTimeout(function(){
+                                window.dispatchEvent(new Event('resize'));
+                            },200)
+                        },
+                        // åˆå§‹åŒ–é¢„å¡«
+                        init: function(){
+                            var node = document.getElementById('j-nav-narrow'),
+                                body = document.body,
+                                that = this,
+                                storage = window.localStorage;
+                            if(storage.getItem('nav-state') === null){
+                                storage.setItem('nav-state',0);
+                            }
+                            if(storage.getItem('nav-state') != 0){
+                                node.className = 'g-nav g-nav-narrow';
+                                body.className = 'g-flex g-flex-narrow';
+                            }else{
+                                body.className = 'g-flex';
+                                node.className = 'g-nav';
+                            }
+                            // å½“å‰ä¸€çº§èœå•é¡¹,è®°å…¥localstrage
+                            if(navState.navIndex != storage.getItem('navIndex')){
+                                for(var i=storage.length-1;i>=0;i--){
+                                    var name = storage.key(i);
+                                    if(/^z-open-\d+$/.test(name)){
+                                        storage.removeItem(name);
+                                    }
+                                }
+                                storage.setItem('navIndex',navState.navIndex);
+                            }
+                            setTimeout(function(){
+                                var node = document.getElementById('j-nav-narrow-set');
+                                node.addEventListener('click', that.toggle);
+                            }, 500);
+                        }
+                    };
+                    window.navState.init();
+                })()
+            </script>
+            <div class="m-logo">
+                <i class="logo"></i>
+            </div>
+            <ul class="m-nav" id="boss-navigator">
+                <li class=" home" id="nav-home" data-action="redirect" data-href="/admin/" data-log="ad-nv-hm" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">ä¸»é¡µ</a>
+                    </div>
+                    <a href="/admin/"><i class="u-icon u-icon-home"></i>ä¸»é¡µ</a>
+                </li>
+                <li class=" report" id="nav-report" data-action="redirect" data-href="/admin/report/" data-log="ad-nv-rp" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">å·¥ä½œæŠ¥è¡¨</a>
+                    </div>
+                    <a href="/admin/report/"><i class="u-icon u-icon-report"></i>å·¥ä½œæŠ¥è¡¨</a>
+                </li>
+                <li class=" session" id="nav-session" data-action="redirect" data-href="/admin/session/" data-log="ad-nv-hs" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">å†å²ä¼šè¯</a>
+                    </div>
+                    <a href="/admin/session/"><i class="u-icon u-icon-session"></i>å†å²ä¼šè¯</a>
+                </li>
+                <li class=" quality" id="nav-quality" data-action="redirect" data-href="/quality/session/check/" data-log="ad-nv-qa" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">è´¨é‡æ£€æµ‹</a>
+                    </div>
+                    <a href="/quality/session/check/"><i class="u-icon u-icon-quality"></i>è´¨é‡æ£€æµ‹</a>
+                </li>
+                <li class=" sheet" id="nav-sheet" data-action="redirect" data-href="/worksheet/admin/" data-log="ad-nv-wk" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">å·¥å•ä¸­å¿ƒ</a>
+                    </div>
+                    <a href="/worksheet/admin/"><i class="u-icon u-icon-sheet"></i>å·¥å•ä¸­å¿ƒ</a>
+                </li>
+                <li class=" kefu" id="nav-kefu" data-action="redirect" data-href="/admin/kefu/" data-log="ad-nv-kf" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">å®¢æœç®¡ç†</a>
+                    </div>
+                    <a href="/admin/kefu/"><i class="u-icon u-icon-kefu"></i>å®¢æœç®¡ç†</a>
+                </li>
+                <li class=" book" id="nav-book" data-action="redirect" data-href="/robot/admin/" data-log="ad-nv-rt" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">çŸ¥è¯†åº“</a>
+                    </div>
+                    <a href="/robot/admin/"><i class="u-icon-font icon-book"></i>çŸ¥è¯†åº“</a>
+                </li>
+                <li class=" voice-big" id="nav-voice-big" data-action="redirect" data-href="/admin/outbox/" data-log="ad-nv-qa" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">å…¬å‘Š</a>
+                    </div>
+                    <a href="/admin/outbox/"><i class="u-icon-font icon-voice-big"></i>å…¬å‘Š</a>
+                </li>
+                <li class=" qiye" id="nav-qiye" data-action="redirect" data-href="/admin/company/" data-log="ad-nv-cp" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">ä¼ä¸šå¸æˆ·ç®¡ç†</a>
+                    </div>
+                    <a href="/admin/company/"><i class="u-icon u-icon-qiye"></i>ä¼ä¸šå¸æˆ·ç®¡ç†</a>
+                </li>
+                <li class=" setting" id="nav-setting" data-action="redirect" data-href="/admin/setting/" data-log="ad-nv-st" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">è®¾ç½®</a>
+                    </div>
+                    <a href="/admin/setting/"><i class="u-icon u-icon-setting"></i>è®¾ç½®</a>
+                </li>
+                <li class=" callcenter" id="nav-callcenter" data-action="redirect" data-href="/callcenter/" data-log="ad-nv-hs" data-sensorsheatmap="trackHeatMap">
+                    <div class="u-toast-nav">
+                        <a class="bd">å‘¼å«ä¸­å¿ƒ</a>
+                    </div>
+                    <a href="/callcenter/"><i class="u-icon u-icon-callcenter"></i>å‘¼å«ä¸­å¿ƒ</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="g-container">
+            <header class="g-header" id="boss-header">
+                <div class="u-narrow" id="j-nav-narrow-set">
+                    <i class="u-icon u-icon-narrow"></i>
+                </div>
+                <i class="icon-slider" style="display: none"></i>
+                <div class="m-slider-announce">
+                    <ul class="m-slider-ul">
+                    </ul>
+                </div>
+                <ul class="m-state">
+                    <li class="f-ib guide" id="qiyuGuide" data-log="ad-sr-qy0" data-sensorsheatmap="trackHeatMap">
+                        <a href="/admin/guide/"><i class="u-icon-guide"></i>æ¢ç´¢ç½‘æ˜“ä¸ƒé±¼</a>
+                    </li>
+                    <li class="f-ib contact_kefu" id="contact_kefu" data-sensorsheatmap="trackHeatMap">
+                        <i class="u-icon-font icon-contact-us"></i>
+                        <span>è”ç³»å®¢æœ</span>
+                        <i class="u-icon u-icon-down"></i>
+                        <ul class="m-smenu">
+                            <li id="concatUsBoss" data-sensorsheatmap="trackHeatMap">
+                                <a>
+                                    <i class="u-icon-font icon-contact-us"></i>
+                                    è”ç³»ä¸ƒé±¼å®¢æœ
+                                </a>
+                            </li>
+                            <li id="qiyuHelpCenter" data-sensorsheatmap="trackHeatMap">
+                                <a class="state__help" href="http://help.qiyukf.com/" target="_blank" id="state__help">
+                                    <i class="u-icon-font icon-circle-question-revert"></i>
+                                    ä¸ƒé±¼å¸®åŠ©ä¸­å¿ƒ
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="f-ib m-header-download" id="m-header-download" data-sensorsheatmap="trackHeatMap"><a><i class='u-icon-font icon-download-center'></i>ä¸‹è½½ä¸­å¿ƒ</a></li>
+                    <li class="f-ib m-header-mailtips" id="m_header_mailtips" data-sensorsheatmap="trackHeatMap"><a><i class='u-icon-font icon-voice-big'></i>æ¶ˆæ¯ä¸­å¿ƒ</a></li>
+                    <li class="f-ib info" id="user-info" data-sensorsheatmap="trackHeatMap">
+                        <span id="header-username-show">è¶…çº§ç®¡ç†å‘˜</span>
+                        <i class="u-icon u-icon-down"></i>
+                        <ul class="m-smenu">
+                            <li id="change2Kefu" data-sensorsheatmap="trackHeatMap">
+                                <a href="/chat/" id="j-switch_btn">
+                                    åˆ‡æ¢ä¸ºå®¢æœæ¨¡å¼
+                                </a>
+                            </li>
+                            <li id="change2InfoSetting" data-sensorsheatmap="trackHeatMap">
+                                <a href="/admin/setting/" data-action="redirect" data-href="/admin/setting/">
+                                    ä¸ªäººä¿¡æ¯è®¾ç½®
+                                </a>
+                            </li>
+                            <li id="change2Manage" data-sensorsheatmap="trackHeatMap">
+                                <a href="/admin/company/">
+                                    ä¼ä¸šå¸æˆ·ç®¡ç†
+                                </a>
+                            </li>
+                            <li id="change2Logout" data-sensorsheatmap="trackHeatMap">
+                                <a href="/api/kefu/logout" data-action="leave" id="j-logout">
+                                    é€€å‡º
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </header>
+            <main class="g-main g-main-boss" id="boss-module">
+                {block name="body"}
+                {/block}
+            </main>
+        </div>
+    </body>
 </html>

@@ -5,6 +5,6 @@ class Index extends Base
 {
     public function index()
     {
-        return 'explore';
+        return $this->fetch();
     }
 }
