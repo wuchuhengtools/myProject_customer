@@ -33,5 +33,6 @@ return [
     //公共模板输出替换
     'tpl_replace_string'  =>  [
         '__COMMON_CSS__' => '/static/common/css',
+        '__COMMON_JS__' => '/static/common/js',
     ]
 ];
