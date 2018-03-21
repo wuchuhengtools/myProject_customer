@@ -2,18 +2,11 @@
 namespace app\index\controller;
 //use think\Controller;
 use think\Controller;
-
-class Index extends Controller
+use app\common\controller\Base;
+class Index extends Base
 {
     public function index()
     {
-        return 131231;
-    }
-    public function test(){
-        return __function__;
-    }
-    public function hello($name = 'ThinkPHP5')
-    {
-        return 'hello,' . $name;
+        return $this -> fetch();
     }
 }
