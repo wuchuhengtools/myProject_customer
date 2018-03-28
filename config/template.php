@@ -30,9 +30,11 @@ return [
     'taglib_begin' => '{',
     // 标签库标签结束标记
     'taglib_end'   => '}',
-    //公共模板输出替换
+    //公公共模板输出替换
     'tpl_replace_string'  =>  [
         '__COMMON_CSS__' => '/static/common/css',
         '__COMMON_JS__' => '/static/common/js',
+        '__INDEX_JS__' => '/static/index/js',
+        '__INDEX_CSS__' => '/static/index/css',
     ]
 ];

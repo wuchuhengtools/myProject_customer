@@ -1,0 +1,221 @@
+/* index显示数据div */
+.g-mnc-home{
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 40px;
+}
+.g-mnc {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    padding: 40px;
+}
+    /* 数据总览div */
+    .g-row{
+        position: relative;
+        width:100%;
+    }
+        /* 数据总览标题*/ 
+        .g-tip-row{
+            height: 45px;
+            margin-bottom: 25px;
+        }
+            .m-tooltip {
+                position: absolute;
+                top: -26px;
+                z-index: 9999;
+                top: 13px;
+            }
+            .m-tooltip-detail-zup {
+                z-index: 100000 !important;
+            }
+            .m-tooltip {
+                display: inline-block;
+                /* position: relative; */
+            }
+                /* 数据总览文字样式 */
+                .g-tip-row a {
+                        font-size: 21px;
+                }
+                .m-tooltip a {
+                    color: #222;
+                }
+                .m-tooltip * {
+                    vertical-align: middle;
+                    display: inline-block;
+                    min-height: 16px;
+                }
+        /* 所有业务分流 */        
+        .m-shunt-group {
+            display: inline-block;
+            width: 150px;
+            float: right;
+            height: 36px;
+        }
+            /* 所有业务分流标题样式 */
+            .m-shunt-group .m-select-mul .m-select-mul-sel {
+                height: 38px;
+                line-height: 37px;
+                padding-right: 38px;
+                border:1px solid #e8e8e8;
+            }
+            .m-select-mul .m-select-mul-sel {
+                cursor: pointer;
+                display: inline-block;
+                height: 34px;
+                width: 100%;
+                font-size: 14px;
+                color: #333;
+                border-radius: 2px;
+                box-sizing: border-box;
+                text-align: left;
+                padding: 0 27px 0 15px;
+                line-height: 32px;
+            }
+            .m-shunt-group .m-select-mul {
+                min-width: 100px;
+                background-color: #fafafa;
+            }
+            
+                .m-shunt-group .m-select-mul .m-select-mul-sel span {
+                    font-size: 12px;
+                    text-align: center;
+                }
+                .m-select-mul {
+                    position: relative;
+                    min-width: 300px;
+                    font-size: 0px;
+                }
+                .m-select-mul .m-select-mul-sel >span {
+                    width: 100%;
+                    display: inline-block;
+                    float: left;
+                    overflow: hidden;
+                    word-wrap: normal;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .m-shunt-group .m-select-mul .m-select-mul-sel .u-icon-down {
+                    top: 18px;
+                    right: 27px;
+                }
+                .m-select-mul .m-select-mul-sel >i {
+                    position: absolute;
+                    top: 14px;
+                    right: 10px;
+                }
+                .u-icon-down {
+                    background-position: 0 -540px;
+                }
+            /* 业务下拉 */
+            .m-shunt-group .m-select-mul-cnt {
+                width: 290px;
+                font-size: 14px;
+                right: 0px;
+            }
+            .m-select-mul .m-select-mul-cnt {
+                border: 1px solid #ddd;
+                box-shadow: 0px 2px 4px 0px rgba(189,189,189,0.5);
+                border-radius: 2px;
+                position: absolute;
+                z-index: 10010;
+                background: #fff;
+                top: 36px;
+                /* width: 100%; */
+                box-sizing: border-box;
+            }
+            .m-select-mul .m-select-mul-cnt .cnt-top {
+                overflow-y: auto;
+                max-height: 460px;
+                padding-bottom: 55px;
+            }
+                /* 所有业务 */
+                .m-select-mul .m-select-mul-cnt .cnt-top .cnt-head {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-content: center;
+                    padding: 5px 15px;
+                }
+                .m-check-item:last-child {
+                        margin-right: 0px;
+                }
+                .m-select-mul .m-check-item {
+                    cursor: pointer;
+                    display: inline-block;
+                    position: relative;
+                    height: 26px;
+                    line-height: 16px;
+                    width: 120px;
+                    font-size: 14px;
+                    color: #333;
+                    border: 1px solid #e8e8e8;
+                    border-radius: 2px;
+                    padding: 4px 20px;
+                    box-sizing: border-box;
+                    text-align: center;
+                    margin-top: 10px;
+                    /* margin-right: 10px; */
+                }
+                .m-check-item {
+                    cursor: pointer;
+                    display: inline-block;
+                    position: relative;
+                    height: 26px;
+                    line-height: 16px;
+                    width: 120px;
+                    font-size: 14px;
+                    color: #333333;
+                    border: 1px solid #e8e8e8;
+                    border-radius: 2px;
+                    padding: 4px 20px;
+                    box-sizing: border-box;
+                    text-align: center;
+                    margin-top: 10px;
+                    margin-right: 9px;
+                }
+                label, summary {
+                    cursor: default;
+                }
+                .m-select-mul .m-check-item >input {
+                    display: none;
+                }
+                .m-check-item>input {
+                    display: none;
+                }
+                input {
+                    -moz-border-radius: 2px;
+                    border-radius: 2px;
+                }
+                .m-select-mul .m-check-item >span {
+                    display: inline-block;
+                    width: 100%;
+                    overflow: hidden;
+                    word-wrap: normal;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .m-check-item>span {
+                    display: inline-block;
+                    width: 100%;
+                    overflow: hidden;
+                    word-wrap: normal;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .m-select-mul .m-check-item >i {
+                    position: absolute;
+                    display: none;
+                    top: 6px;
+                    right: 4px;
+                }
+                .m-check-item>i {
+                    position: absolute;
+                    display: none;
+                    top: 6px;
+                    right: 4px;
+                }
+                /* 未分流会话 */
+                .m-select-mul .m-select-mul-cnt .cnt-top .cnt-middle {
+                    margin-top: 15px;
+                }

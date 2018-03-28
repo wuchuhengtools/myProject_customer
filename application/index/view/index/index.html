@@ -1,2 +1,63 @@
 {extend name="../../common/view/laout/index"}
+{block name="body"}
+{/*当前index模块样式文件*/}
+<link rel="stylesheet" href="__INDEX_CSS__/index.css"/>
+<div class="g-mnc g-mnc-home">
+    <!-- 数据总览div -->
+    <div class="g-row">
+        <!-- 数据总览标题 --> 
+        <div class="g-tip-row">
+            <div class="m-tooltip m-tooltip-detail m-tooltip-detail-zup">
+                <!-- 数据总览文字样式 -->
+                <a>
+                    数据总览
+                    <i class="u-icon-help"></i>
+                </a>
+                <div class="inner inner-down">
+                    <!--inlcude-->
+                    <p><span>正在咨询人数</span>当前正在咨询的访客数量</p>
+                    <p><span>当前在线客服数</span>当前处于可接待状态的客服数量</p>
+                    <p><span>当前排队人数</span>当前处于排队状态的访客数量</p>
+                    <p><span>平均排队时间</span>今日累计开始排队到进入咨询的平均排队时间</p>
+                    <p><span>今日会话量</span>本日累计的会话数量</p>
+                    <p><span>平均会话时长</span>访客进入到会话结束时间间隔的平均值</p>
+                    <p><span>未接入会话量</span>今日累计放弃排队的数量</p>
+                    <p><span>接入率</span>今日累计已接入会话与总会话数的比值</p>
+                    <p><span>相对满意度</span>今日累计满意数量与评价总量的比值</p>
+                    <p><span>参评率</span>今日参加评价的数量与接入会话数量的比值</p>
+                </div>
+            </div>
+            <!-- 所有业务分流 -->
+            <div class="m-shunt-group">
+                <div class="m-select-mul" onselectstart="return false" _vimium-has-onclick-listener>
+                    <div class="m-select-mul-sel j-ipt" tabindex="0" _vimium-has-onclick-listener="">
+                        <span title="所有业务分流" class="">所有业务分流</span>
+                        <i class="u-icon u-icon-down"></i>
+                    </div>
+                    <!-- 隐藏选项 -->
+                    <div class="m-select-mul-cnt" id="auto-id-1521816499641" style="display: block;" >
+                        <div class="cnt-top" id="auto-id-1521816499640">
+                            <div class="cnt-head" id="auto-id-1521816499639">
+                                <label class="m-check-item " onselectstart="return false" title="所有业务分流" id="auto-id-1521816499638" >
+                                    <input type="checkbox" id="auto-id-1521816499642">
+                                    <span>所有业务分流</span>
+                                    <i class="u-icon-tickblue" id="auto-id-1521816499643"></i>
+                                </label>
+                            </div>
+                            <div class="cnt-middle" id="auto-id-1521816499648">
+                                <div class="level-1-wrap z-show" id="auto-id-1521816499647">
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 所有客户组 -->
+            <!-- <div class="condition_gm" id="auto-id-1521805019412"> -->
+
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+{/block}
